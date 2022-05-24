@@ -1,0 +1,45 @@
+# 实验唯一标识串
+_key_:
+  name: a
+  model/optimizer/lr: lr
+  model/model: model
+  model/drop: drop
+  model/dim: dim
+  model/decay: decay
+  model/n_layers: nl
+  model/alpha: alpha
+  model/mode: mode
+  dataset/filter_rating: dfr
+  DataLoader/batch_size: bs
+  dataset/source: ds
+
+_grid_search_:
+  "model/optimizer/lr": [ 0.01, 0.03, 0.1, 0.3, 1.0 ]  # learning_rate
+#  "model/drop": [ 0, 0.1, 0.2, ]
+  "model/decay": [ 0.0003, 0.001, 0.003, 0.01, 0.03 ]
+  "model/n_layers": [ 0, 1, 2, 3 ]
+  "model/alpha": [ 0.01, 0.1, 0.3, 0.5, 0.7, 0.9, 0.99 ]
+  "model/mode": [ 'linear', 'embed' ]
+#  "DataLoader/batch_size": [ 1024, 2048, 4096, 8192, 16384, 26870 ]
+_grid_search_repeat: 3
+
+# 最优设置效果：0.2731	0.6926	0.4695	0.3997
+cuda: "1"
+name: LGN
+model:
+  dim: 32
+  model: UmLGNModel
+  drop: 0
+  n_layers: 3
+  decay: 0.01
+  optimizer:
+    lr: 0.3
+
+DataLoader:
+  batch_size: 26870
+
+dataset:
+  source: AIV # ML1MDataset # CiteULikeDataset / ML100KDataset
+  filter_rating: 0
+  split_mode: leave-one-out
+  fast: True

@@ -1,0 +1,7 @@
+GitPython
+GPUtil
+PyYAML
+setproctitle
+torch
+tqdm
+class-resolver

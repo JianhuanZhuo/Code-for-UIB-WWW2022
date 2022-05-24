@@ -1,0 +1,50 @@
+# 实验唯一标识串
+_key_:
+  model/optimizer/lr: lr
+  model/optimizer/weight_decay: wd
+  model/distance: dist
+  model/loss: loss
+  model/drop: drop
+  model/dim: dim
+  model/margin: m
+#  model/alpha: alpha
+  dataset/filter_rating: dfr
+  #  model/lambda: lambda
+  #  model/gamma: gamma
+  DataLoader/batch_size: bs
+
+model: "space_holder"
+
+log_folder: "logs"
+log_tag: "X"
+cuda: "0"
+seed: 15
+evaluator_time: 10
+evaluator_args:
+  stop_delay: 5
+  use_stop: True
+  eval_xs: [ 1, 10 ]
+  checkpoint_save: False
+epochs: 500
+train:
+  epoch_tqdm: True
+  batch_tqdm: False
+  print_eval: False
+  print_best: True
+dataset:
+  source: ML1MDataset # CiteULikeDataset / ML100KDataset
+  filter_rating: 0
+  split_mode: leave-one-out
+  fast: True
+DataLoader:
+  shuffle: True
+  batch_size: 1024
+  drop_last: False
+  pin_memory: False
+# log as tee file
+logfile: True
+analysis:
+  record_margin: False
+  record_scores: False
+  record_embedding: False
+  record_boundary: False

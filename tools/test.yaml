@@ -1,0 +1,32 @@
+# 实验唯一标识串
+_key_:
+  pipeline/dataset:
+  pipeline/model:
+  pipeline/training_kwargs/use_tqdm_batch: tqb
+
+model1: &m1
+  arg1: 1
+model2: &m2
+  arg2: 12
+
+# 在 pipeline 中使用
+pipeline:
+  dataset: 'WN18'
+  model:
+  <<: *m1
+  stopper: 'early'
+  training_loop: 'My'
+  training_loop_kwargs:
+  training_kwargs:
+    use_tqdm: True
+    use_tqdm_batch: False
+    num_epochs: 100
+
+  # 验证
+  evaluation_kwargs:
+    batch_size: 256
+
+  # 实验结果搜集器
+  result_tracker: 'tb'
+  result_tracker_kwargs:
+    path: "./run/temp"
