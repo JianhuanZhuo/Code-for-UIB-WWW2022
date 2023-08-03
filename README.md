@@ -1,4 +1,3 @@
 # Code-for-UIB-WWW2022
 
-todo list
-- [x] release the code soon...
+code for paper Learning Explicit User Interest Boundary for Recommendation
